@@ -1,0 +1,18 @@
+.sidebarMenuItem {
+    height: 100px;
+    padding: 30px;
+}
+
+.active {
+    background: #ddd;
+    color :#fff;
+}
+
+.menuText {
+    margin: auto;
+}
+
+.sidebarMenuItem:hover {
+    background: #ddd;
+    color :#fff;
+}

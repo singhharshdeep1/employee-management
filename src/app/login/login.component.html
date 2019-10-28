@@ -1,3 +1,12 @@
-<button (click)="googleSignIn()">
-    Login with Google
-</button>
+<div class="container">
+    <div class="kpx_login">
+        <h3 class="kpx_authTitle">Login</h3>
+        <div class="row kpx_socialButtons">
+          <div class="googleButton col-xs-6 col-sm-6">
+            Sign in with: <button (click)="googleSignIn()" style="background-color: white; border: 0.5px solid #dde; box-shadow: 0 2px lightgray;" class="btn google">
+              <img style="margin-right: 10px;" src="http://pluspng.com/img-png/google-logo-png-open-2000.png" height="18" width="20">
+              <span style="color: gray;font-size: 0.8em;"><strong>Google</strong></span>
+            </button>
+          </div>
+    </div>
+</div>

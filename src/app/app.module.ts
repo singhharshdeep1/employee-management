@@ -7,6 +7,10 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
+import { DashboardSearchComponent } from './dashboard-search/dashboard-search.component';
+import { EmployeeResultsComponent } from './employee-results/employee-results.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { EmployeeViewComponent } from './employee-view/employee-view.component';
 
 const config = new AuthServiceConfig([
   {
@@ -23,7 +27,11 @@ export function provideConfig() {
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardSearchComponent,
+    EmployeeResultsComponent,
+    SidebarComponent,
+    EmployeeViewComponent
   ],
   imports: [
     BrowserModule,

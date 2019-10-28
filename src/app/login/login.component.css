@@ -1,0 +1,83 @@
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web&subset=latin,latin-ext);
+@media (min-width: 768px) {
+    .kpx_row-sm-offset-3 div:first-child[class*="col-"] {
+        /* margin-left: 42%; */
+    }
+}
+body {
+    font-family: 'Titillium Web', sans-serif; 
+}
+a{
+    color:#ff5400;
+}
+a:hover {
+    opacity: 0.8;
+    color:#ff5400;
+    text-decoration:none;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.kpx_login {
+    height: 450px;
+    width: 450px;
+    border-radius: 10px;
+    margin: auto;
+    top: 50%;
+}
+
+.kpx_login .kpx_authTitle {
+    text-align: center;
+    line-height: 300%;
+}
+    
+.googleButton {
+    margin: 0 auto;
+}
+.kpx_login .kpx_socialButtons button {
+    color: white;
+	opacity:0.9;
+}
+.kpx_login .kpx_socialButtons button:hover {
+    color: white;
+	opacity:1;    	
+}
+.kpx_login .kpx_socialButtons .kpx_btn-google-plus {background: #c32f10; -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;}
+.kpx_login .kpx_socialButtons .kpx_btn-google-plus:hover {background: #6b1301}
+.kpx_login .kpx_socialButtons .kpx_btn-google-plus:focus {background: #fff; color: #c32f10; border-color: #c32f10}
+
+.kpx_login .kpx_loginOr {
+	position: relative;
+	font-size: 1.5em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.kpx_login .kpx_loginOr .kpx_hrOr {
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+
+.kpx_login .kpx_loginForm .input-group.i {
+	width: 2em;
+}
+.kpx_login .kpx_loginForm  .help-block {
+    color: red;
+}
+
+	
+@media (min-width: 768px) {
+    .kpx_login .kpx_forgotPwd {
+        text-align: right;
+		margin-top:10px;
+ 	}		
+}
