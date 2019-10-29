@@ -7,7 +7,7 @@ export default class Employee {
         private Address: string,
         private Role: string,
         private DateOfBirth: Date,
-        private DepartmentId: string
+        private Departments: string[]
     ) {}
 
     public get id(): string {
@@ -50,11 +50,11 @@ export default class Employee {
         this.DateOfBirth = moment(DateOfBirth, "MM/DD/YYYY").toDate();;
     }
 
-    public get departmentId(): string {
-        return this.DepartmentId;
+    public get departments(): string[] {
+        return this.Departments;
     }
 
-    public set departmentId(DepartmentId: string) {
-        this.DepartmentId = DepartmentId;
+    public set departments(Departments: string[]) {
+        this.Departments = Departments;
     }
 }

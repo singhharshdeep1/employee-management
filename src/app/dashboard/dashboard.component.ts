@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
+import { SidebarService } from '../sidebar.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,27 +10,14 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  userName: string;
   sidebarOpen: boolean;
 
-  constructor(private authService: AuthService,
-    private router:Router) {
-      this.userName = localStorage.getItem('name');
-      this.sidebarOpen = true;
-    }
+  constructor(
+    private sidebarService: SidebarService
+  ) {}
 
   ngOnInit() {
-  }
-
-  signOut() {
-    this.authService.signOut();
-    localStorage.removeItem('token');
-    this.router.navigateByUrl('/login');
-  }
-
-  toggleSidebar() {
-    this.sidebarOpen = !this.sidebarOpen;
-    console.log(this.sidebarOpen);
+    this.sidebarService.sidebarVisible.subscribe(visible => this.sidebarOpen = visible);
   }
 
 }

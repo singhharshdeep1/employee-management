@@ -1,31 +1,12 @@
 <main>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <ul class="navbar-nav">
-            <li class="nav-link">
-                <span style="padding-bottom: 0;" class="sidebarBtn" (click)="toggleSidebar()">
-                    <i style="color: white" class="fa fa-bars fa-3x"></i>
-                </span>
-                <a class="navbar-brand ml-3" href="#">Employee Management</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle username" href="#" data-toggle="dropdown">
-                        {{ userName }}
-                    </a>
-                    <div class="dropdown-menu">
-                    <a (click)="signOut()" class="dropdown-item" href="#">Logout</a>
-                    </div>
-            </li>
-        </ul>
-    </nav>
+    <app-header></app-header>
     <div class="row">
-        <div class="sidebar col-md-3 col-sm-12" *ngIf="sidebarOpen">
+        <div class="col-md-3 col-sm-12">
             <app-sidebar></app-sidebar>
         </div>
         <div class="{{ sidebarOpen ? 'col-md-9' : 'col-md-12' }}">
             <app-dashboard-search></app-dashboard-search>
-            <app-employee-results></app-employee-results>
+            <app-dashboard-view></app-dashboard-view>
         </div>
     </div>
 </main>

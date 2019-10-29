@@ -8,9 +8,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
 import { DashboardSearchComponent } from './dashboard-search/dashboard-search.component';
-import { EmployeeResultsComponent } from './employee-results/employee-results.component';
+import { DashboardViewComponent } from './dashboard-view/dashboard-view.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { EmployeeViewComponent } from './employee-view/employee-view.component';
+import { ShowEmployeeComponent } from './show-employee/show-employee.component';
+import { HeaderComponent } from './header/header.component';
+import { ShowDepartmentComponent } from './show-department/show-department.component';
+import { DepartmentModalComponent } from './department-modal/department-modal.component';
 
 const config = new AuthServiceConfig([
   {
@@ -29,9 +32,12 @@ export function provideConfig() {
     LoginComponent,
     DashboardComponent,
     DashboardSearchComponent,
-    EmployeeResultsComponent,
+    DashboardViewComponent,
     SidebarComponent,
-    EmployeeViewComponent
+    ShowEmployeeComponent,
+    HeaderComponent,
+    ShowDepartmentComponent,
+    DepartmentModalComponent
   ],
   imports: [
     BrowserModule,

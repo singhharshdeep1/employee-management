@@ -3,6 +3,13 @@
     padding: 30px;
 }
 
+.sidebar {
+    height: 100vh;
+    background: #aaa;
+    padding: 0;
+    padding-top: 50px;
+}
+
 .active {
     background: #ddd;
     color :#fff;

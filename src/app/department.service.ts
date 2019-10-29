@@ -11,11 +11,13 @@ export class DepartmentService {
   departments = [
     {
       id: '1',
-      name: 'Information Technology'
+      name: 'Information Technology',
+      members: ['1', '2']
     },
     {
       id: '2',
-      name: 'IT Support'
+      name: 'IT Support',
+      members: []
     }
   ];
 
@@ -23,6 +25,10 @@ export class DepartmentService {
 
   getDepartments(): Department[] {
     return (<Department[]> this.departments);
+  }
+
+  getDepartmentsByIds(ids: string[]): Department[] {
+    return (<Department[]> this.departments.filter(dept => ids.includes(dept.id) ));
   }
 
   getDepartment(id: string): Department {

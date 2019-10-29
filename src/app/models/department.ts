@@ -1,7 +1,10 @@
+import Employee from './employee';
+
 export default class Department {
     constructor(
         private Id: string,
-        private Name: string
+        private Name: string,
+        private Members: string[]
     ) {}
 
     public get id(): string {
@@ -18,5 +21,13 @@ export default class Department {
 
     public set name(Name: string) {
         this.Name = Name;
+    }
+
+    public get members(): string[] {
+        return this.Members
+    }
+
+    public set members(Members: string[]) {
+        this.Members = Members;
     }
 }

@@ -12,10 +12,10 @@ export class EmployeeService {
     {
       id: '1',
       name: "Harshdeep Singh",
-      address: "ABC Street, Test City, A1A1A1",
+      address: "64 Laurentide Crescent, Brampton",
       role: "Computer Programmer",
       dateOfBirth: '08/01/1995',
-      departmentId: '1'
+      departments: ['1']
     },
     {
       id: '2',
@@ -23,7 +23,7 @@ export class EmployeeService {
       address: "ABC Street, Test City, A1A1A1",
       role: "Computer Programmer",
       dateOfBirth: '06/23/1993',
-      departmentId: '1'
+      departments: ['1']
     }
   ];
 
@@ -31,6 +31,10 @@ export class EmployeeService {
 
   getEmployees(): Employee[] {
     return (<Employee[]> this.employees);
+  }
+
+  getEmployeesByIds(ids: string[]): Employee[] {
+    return (<Employee[]> this.employees.filter(emp => ids.includes(emp.id)));
   }
 
   getEmployee(id: string): Employee {

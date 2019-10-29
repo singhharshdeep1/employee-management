@@ -1,0 +1,39 @@
+<div>
+    <app-header></app-header>
+    <div class="row">
+        <div class="col-md-3 col-sm-12">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="{{ sidebarOpen ? 'col-md-9' : 'col-md-12' }}">
+            <div class="{{ sidebarOpen ? 'container-fluid' : 'container' }}">
+                <div class="row mt-2">
+                    <img class="rounded mx-auto img-thumbnail" height="300" width="300" 
+                    src="https://acc.edu.ai/assets/images/no-staff-image.png" alt="Card image cap">
+                </div>
+                <div class="mt-2">
+                    <h3 class="text-center">{{ selectedEmployee.name }}</h3>
+                    <p class="text-center text-muted">{{ selectedEmployee.role }}</p>
+                </div>
+                <div class="mt-3">
+                    <span class="pr-2"><i class="fa fa-home fa-2x" aria-hidden="true"></i></span> <a target="_blank" 
+                    href="http://www.google.com/maps/place/{{ selectedEmployee.address.split(' ').join('+').split(',').join('') }}">
+                    {{ selectedEmployee.address }}</a>
+                </div>
+                <div class="mt-3">
+                    <span class="pr-2"><i class="fa fa-birthday-cake fa-2x" aria-hidden="true"></i></span> {{ selectedEmployee.dateOfBirth }}
+                </div>
+                <div class="mt-4">
+                    <h5>Departments:</h5>
+                    <div *ngFor="let dept of departments">
+                        <a href="department/{{ dept.id }}">{{dept.name}}</a>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <button type="button" data-toggle="modal" class="btn btn-info" data-target="#departmentModal">Manage Departments</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-department-modal [employee]="selectedEmployee"></app-department-modal>
