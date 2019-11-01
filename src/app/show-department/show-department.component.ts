@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Department from '../models/department';
 import { DepartmentService } from '../department.service';
 import { SidebarService } from '../sidebar.service';
@@ -19,6 +19,7 @@ export class ShowDepartmentComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private deptService: DepartmentService,
     private sidebarService: SidebarService,
     private empService: EmployeeService
@@ -26,9 +27,13 @@ export class ShowDepartmentComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.selectedDepartment = this.deptService.getDepartment(id);
-    this.members = this.empService.getEmployeesByIds(this.selectedDepartment.members);
+    this.deptService.getDepartment(id).subscribe(updatedDepartment => this.selectedDepartment = updatedDepartment);
+    // this.empService.getEmployeesByIds(this.selectedDepartment.members).subscribe(updatedEmployees => this.members = updatedEmployees);
     this.sidebarService.sidebarVisible.subscribe(visible => this.sidebarOpen = visible);
+  }
+
+  showEmployee(id: string) {
+    this.router.navigateByUrl(`/employee/${Number(id)}`);
   }
 
 }

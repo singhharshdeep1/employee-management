@@ -24,6 +24,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  goToDashboard() {
+    this.router.navigateByUrl('/dashboard');
+  }
+
   signOut() {
     this.authService.signOut();
     localStorage.removeItem('token');

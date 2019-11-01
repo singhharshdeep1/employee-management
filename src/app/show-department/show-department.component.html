@@ -16,7 +16,7 @@
                     <div class="mt-4">
                         <h5>Members:</h5>
                         <div *ngFor="let emp of members">
-                            <a href="employee/{{ emp.id }}">{{emp.name}}</a>
+                            <button class="btn btn-link" (click)="showEmployee(emp.id)">{{emp.name}}</button>
                         </div>
                     </div>
                 </div>

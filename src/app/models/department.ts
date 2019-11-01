@@ -2,16 +2,15 @@ import Employee from './employee';
 
 export default class Department {
     constructor(
-        private Id: string,
-        private Name: string,
-        private Members: string[]
+        private Id: number,
+        private Name: string
     ) {}
 
-    public get id(): string {
+    public get id(): number {
         return this.Id;
     }
 
-    public set id(Id: string) {
+    public set id(Id: number) {
         this.Id = Id;
     }
 
@@ -21,13 +20,5 @@ export default class Department {
 
     public set name(Name: string) {
         this.Name = Name;
-    }
-
-    public get members(): string[] {
-        return this.Members
-    }
-
-    public set members(Members: string[]) {
-        this.Members = Members;
     }
 }

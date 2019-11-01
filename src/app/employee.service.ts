@@ -1,63 +1,49 @@
 import { Injectable } from '@angular/core';
 import Employee from './models/employee';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import Department from './models/department';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
+  url: string = 'http://localhost:8080/spring-rest-demo/api';
   idCounter = 3;
 
-  employees = [
-    {
-      id: '1',
-      name: "Harshdeep Singh",
-      address: "64 Laurentide Crescent, Brampton",
-      role: "Computer Programmer",
-      dateOfBirth: '08/01/1995',
-      departments: ['1']
-    },
-    {
-      id: '2',
-      name: "Deep Patel",
-      address: "ABC Street, Test City, A1A1A1",
-      role: "Computer Programmer",
-      dateOfBirth: '06/23/1993',
-      departments: ['1']
-    }
-  ];
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  constructor() { }
-
-  getEmployees(): Employee[] {
-    return (<Employee[]> this.employees);
+  getEmployees(): Observable<Employee[]> {
+    return this.http
+              .get<Employee[]>(this.url + '/employees');
   }
 
-  getEmployeesByIds(ids: string[]): Employee[] {
-    return (<Employee[]> this.employees.filter(emp => ids.includes(emp.id)));
+  getEmployeesByIds(ids: number[]): Observable<Employee[]> {
+    return of<Employee[]>([]);
   }
 
-  getEmployee(id: string): Employee {
-    const employee = this.employees.find(emp => emp.id === id);
-    return (<Employee> employee);
+  getEmployee(id: number): Observable<Employee> {
+    return this.http
+              .get<Employee>(this.url + `/employees/${id}`);
   }
 
-  create(employee: Employee): Employee {
-    employee.id = this.idCounter.toString();
+  create(employee: Employee): Observable<Employee> {
+    employee.employee_id = this.idCounter;
     this.idCounter++;
-    this.employees.push(employee);
-    return employee;
+    return this.http
+              .post<Employee>(this.url + `/employees`, employee);
   }
 
-  update(employee: Employee): Employee {
-    const oldEmployeeIndex = this.employees.findIndex(emp => emp.id === employee.id);
-    const oldEmployee = this.employees[oldEmployeeIndex];
-    this.employees[oldEmployeeIndex].name = employee.name;
-
-    return (<Employee> oldEmployee);
+  update(employee: Employee): Observable<Employee> {
+    return this.http
+              .put<Employee>(this.url + `/employees`, employee);
   }
 
-  delete(employeeId: string) {
-    return this.employees.filter(emp => emp.id !== employeeId);
+  delete(employeeId: number): Observable<Employee[]> {
+    return this.http
+              .delete<Employee[]>(this.url + `/employees/${employeeId}`);
   }
 }

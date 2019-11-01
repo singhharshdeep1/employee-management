@@ -1,57 +1,47 @@
 import { Injectable } from '@angular/core';
 import Department from './models/department';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { puts } from 'util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DepartmentService {
 
+  url: string = 'http://localhost:8080/spring-rest-demo/api';
   idCounter = 3;
 
-  departments = [
-    {
-      id: '1',
-      name: 'Information Technology',
-      members: ['1', '2']
-    },
-    {
-      id: '2',
-      name: 'IT Support',
-      members: []
-    }
-  ];
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
-
-  getDepartments(): Department[] {
-    return (<Department[]> this.departments);
+  getDepartments(): Observable<Department[]> {
+    return this.http.get<Department[]>(this.url + `/departments`);
   }
 
-  getDepartmentsByIds(ids: string[]): Department[] {
-    return (<Department[]> this.departments.filter(dept => ids.includes(dept.id) ));
+  getDepartmentsByIds(ids: string[]): Observable<Department[]> {
+    return of([]);
   }
 
-  getDepartment(id: string): Department {
-    const department = this.departments.find(dept => dept.id === id);
-    return (<Department> department);
+  getDepartment(id: string): Observable<Department> {
+    return this.http
+              .get<Department>(`${this.url}/departments/${id}`);
   }
 
-  create(department: Department): Department {
-    department.id = this.idCounter.toString();
+  create(department: Department): Observable<Department> {
+    department.id = this.idCounter;
     this.idCounter++;
-    this.departments.push(department);
-    return department;
+    return this.http
+              .post<Department>(`${this.url}/departments`, department);
+    
   }
 
-  update(department: Department): Department {
-    const oldDepartmentIndex = this.departments.findIndex(dept => dept.id === department.id);
-    const oldDepartment = this.departments[oldDepartmentIndex];
-    this.departments[oldDepartmentIndex].name = department.name;
-
-    return (<Department> oldDepartment);
+  update(department: Department): Observable<Department> {
+    return this.http
+              .put<Department>(`${this.url}/departments`, department);
   }
 
-  delete(departmentId: string) {
-    return this.departments.filter(dept => dept.id !== departmentId);
+  delete(departmentId: string): Observable<Department[]> {
+    return this.http
+              .delete<Department[]>(`${this.url}/departments/${departmentId}`);
   }
 }

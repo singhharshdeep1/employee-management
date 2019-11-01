@@ -11,7 +11,7 @@
                     src="https://acc.edu.ai/assets/images/no-staff-image.png" alt="Card image cap">
                 </div>
                 <div class="mt-2">
-                    <h3 class="text-center">{{ selectedEmployee.name }}</h3>
+                    <h3 class="text-center">{{ selectedEmployee.firstName }} {{ selectedEmployee.lastName }}</h3>
                     <p class="text-center text-muted">{{ selectedEmployee.role }}</p>
                 </div>
                 <div class="mt-3">
@@ -20,12 +20,12 @@
                     {{ selectedEmployee.address }}</a>
                 </div>
                 <div class="mt-3">
-                    <span class="pr-2"><i class="fa fa-birthday-cake fa-2x" aria-hidden="true"></i></span> {{ selectedEmployee.dateOfBirth }}
+                    <span class="pr-2"><i class="fa fa-birthday-cake fa-2x" aria-hidden="true"></i></span> {{ selectedEmployee.birthDate }}
                 </div>
                 <div class="mt-4">
-                    <h5>Departments:</h5>
-                    <div *ngFor="let dept of departments">
-                        <a href="department/{{ dept.id }}">{{dept.name}}</a>
+                    <h5>Department:</h5>
+                    <div>
+                        <button class="btn btn-link" (click)="showDepartment(selectedEmployee.department.id)">{{selectedEmployee.department.name}}</button>
                     </div>
                 </div>
                 <div class="mt-5">
@@ -36,4 +36,4 @@
     </div>
 </div>
 
-<app-department-modal [employee]="selectedEmployee"></app-department-modal>
+<app-department-modal [employee]="selectedEmployee" (employeeChange)="updateEmployee($event)"></app-department-modal>

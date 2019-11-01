@@ -13,6 +13,8 @@ export class DashboardViewComponent implements OnInit {
 
   selectedTab: string;
   data: any[];
+  searchQuery: string;
+  queryData: any[];
 
   constructor(
     private sidebarService: SidebarService,
@@ -23,11 +25,11 @@ export class DashboardViewComponent implements OnInit {
 
   ngOnInit() {
     this.sidebarService.currentTab.subscribe(tab => { 
-      this.selectedTab = tab
+      this.selectedTab = tab;
       if (this.selectedTab === 'employees') {
-        this.data = this.empService.getEmployees();
+        this.empService.getEmployees().subscribe(updatedEmployees => { console.log(updatedEmployees); this.data = updatedEmployees });
       } else {
-        this.data = this.deptService.getDepartments();
+        this.deptService.getDepartments().subscribe(updatedDepartments => this.data = updatedDepartments);
       }
     });
   }
@@ -40,6 +42,22 @@ export class DashboardViewComponent implements OnInit {
   showDepartment(id: string) {
     this.router.navigate([`department/${id}`]);
     this.sidebarService.changeTab('');
+  }
+
+  searchList(query: string) {
+    console.log(query);
+    this.queryData = this.selectedTab === 'employees' ? 
+                                      this.getEmployeesFor(query) : this.getDepartmentsFor(query);
+                                      console.log(this.queryData);
+  }
+
+  getEmployeesFor(query: string): any[] {
+    return this.data.filter(employee => employee.firstName.includes(query) || employee.lastName.includes(query));
+  }
+
+  getDepartmentsFor(query: string): any[] {
+    return this.data.filter(department => department.name.includes(query));
+
   }
 
 }

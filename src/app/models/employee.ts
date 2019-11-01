@@ -1,29 +1,39 @@
 import * as moment from 'moment';
+import Department from './department';
 
 export default class Employee {
     constructor(
-        private Id: string,
-        private Name: string,
+        private Employee_Id: number,
+        private FirstName: string,
+        private LastName: string,
         private Address: string,
         private Role: string,
-        private DateOfBirth: Date,
-        private Departments: string[]
+        private BirthDate: Date,
+        private Department: Department
     ) {}
 
-    public get id(): string {
-        return this.Id;
+    public get employee_id(): number {
+        return this.Employee_Id;
     }
 
-    public set id(Id: string) {
-        this.Id = Id;
+    public set employee_id(Id: number) {
+        this.Employee_Id = Id;
     }
 
-    public get name(): string {
-        return this.Name;
+    public get firstName(): string {
+        return this.FirstName;
     }
 
-    public set name(Name: string) {
-        this.Name = Name;
+    public set firstName(FirstName: string) {
+        this.FirstName = FirstName;
+    }
+
+    public get lastName(): string {
+        return this.LastName;
+    }
+
+    public set lastName(LastName: string) {
+        this.LastName = LastName;
     }
 
     public get address(): string {
@@ -42,19 +52,19 @@ export default class Employee {
         this.Role = Role;
     }
 
-    public get dateOfBirth(): string {
-        return moment(this.DateOfBirth).format("MM/DD/YYYY");
+    public get birtDate(): string {
+        return moment(this.BirthDate).format("DD/MM/YYYY");
     }
 
-    public set dateOfBirth(DateOfBirth: string) {
-        this.DateOfBirth = moment(DateOfBirth, "MM/DD/YYYY").toDate();;
+    public set birthDate(DateOfBirth: string) {
+        this.BirthDate = moment(DateOfBirth, "DD/MM/YYYY").toDate();;
     }
 
-    public get departments(): string[] {
-        return this.Departments;
+    public get department(): Department {
+        return this.Department;
     }
 
-    public set departments(Departments: string[]) {
-        this.Departments = Departments;
+    public set department(Department: Department) {
+        this.Department = Department;
     }
 }
