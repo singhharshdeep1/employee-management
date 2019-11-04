@@ -15,6 +15,7 @@ export class DepartmentModalComponent implements OnInit {
   @Output() employeeChange: EventEmitter<Employee> = new EventEmitter();
   departments: Department[];
   selectedDepartment: Department;
+  $: any;
 
   constructor(
     private deptService: DepartmentService,
@@ -31,7 +32,7 @@ export class DepartmentModalComponent implements OnInit {
 
   submitChanges() {
     this.employee.department = this.selectedDepartment;
-    $('#departmentModal').modal('hide');
+    this.$('#departmentModal').modal('hide');
     this.empService.update(this.employee).subscribe(emp => {
       this.empService.getEmployee(this.employee.employee_id).subscribe(emp => {
         this.employeeChange.emit(emp);

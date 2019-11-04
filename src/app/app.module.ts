@@ -19,6 +19,7 @@ import { DepartmentModalComponent } from './department-modal/department-modal.co
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemEmployeeService } from './in-mem-employee.service';
 import { InMemDepartmentService } from './in-mem-department.service';
+import { NewDepartmentModalComponent } from './new-department-modal/new-department-modal.component';
 
 const config = new AuthServiceConfig([
   {
@@ -42,7 +43,8 @@ export function provideConfig() {
     ShowEmployeeComponent,
     HeaderComponent,
     ShowDepartmentComponent,
-    DepartmentModalComponent
+    DepartmentModalComponent,
+    NewDepartmentModalComponent
   ],
   imports: [
     BrowserModule,

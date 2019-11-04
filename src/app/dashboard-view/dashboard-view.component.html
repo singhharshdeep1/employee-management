@@ -11,7 +11,7 @@
     </div>
 </div>
 <div *ngIf="searchQuery === undefined || searchQuery === ''; else search">
-    <div *ngIf="selectedTab==='employees'; else departments" class="container-fluid mt-5">
+    <div *ngIf="selectedTab==='employees'" class="container-fluid mt-5">
         <div class="row mb-3">
             <div *ngFor="let emp of data" class="col-md-3 col-sm-12">
                 <div class="card" (click)="showEmployee(emp.employee_id)">
@@ -25,31 +25,30 @@
         </div>
     </div>
 
-    <ng-template #departments>
-        <div class="container-fluid mt-5">
-            <div class="row mb-3">
-                <div *ngFor="let dept of data" class="col-md-3 col-sm-12">
-                    <div class="card" (click)="showDepartment(dept)">
-                        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBLxi3Wnr4Gys5z21qOADzNiMbI7j6jWUZJ9s9-LUq6kY7YJl2iQ&s" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dept.name }}</h5>
-                        </div>
+    <div *ngIf="selectedTab === 'departments'" class="container-fluid mt-5">
+        <div class="row mb-3">
+            <div *ngFor="let dept of data" class="col-md-3 col-sm-12">
+                <div class="card" (click)="showDepartment(dept.id)">
+                    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBLxi3Wnr4Gys5z21qOADzNiMbI7j6jWUZJ9s9-LUq6kY7YJl2iQ&s" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dept.name }}</h5>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-12">
-                    <div class="card" (click)="showDepartment(dept.id)">
-                        <img class="card-img-top" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title text-muted">Add a new department</h5>
-                        </div>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <div class="card" data-toggle="modal" data-target="#newDepartmentModal">
+                    <img class="card-img-top" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">Add a new department</h5>
                     </div>
                 </div>
             </div>
         </div>
-    </ng-template>
+        <app-new-department-modal></app-new-department-modal>
+    </div>
 </div>
 <ng-template #search>
-    <div *ngIf="selectedTab==='employees'; else departments" class="container-fluid mt-5">
+    <div *ngIf="selectedTab === 'employees'" class="container-fluid mt-5">
         <div class="row mb-3">
             <div *ngFor="let emp of queryData" class="col-md-3 col-sm-12">
                 <div class="card" (click)="showEmployee(emp.employee_id)">
@@ -63,26 +62,18 @@
         </div>
     </div>
 
-    <ng-template #departments>
-        <div class="container-fluid mt-5">
-            <div class="row mb-3">
-                <div *ngFor="let dept of queryData" class="col-md-3 col-sm-12">
-                    <div class="card" (click)="showDepartment(dept)">
-                        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBLxi3Wnr4Gys5z21qOADzNiMbI7j6jWUZJ9s9-LUq6kY7YJl2iQ&s" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ dept.name }}</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-12">
-                    <div class="card" (click)="showDepartment(dept.id)">
-                        <img class="card-img-top" src="https://cdn3.iconfinder.com/data/icons/buttons/512/Icon_31-512.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title text-muted">Add a new department</h5>
-                        </div>
+    
+    <div *ngIf="selectedTab === 'departments'" class="container-fluid mt-5">
+        <div class="row mb-3">
+            <div *ngFor="let dept of queryData" class="col-md-3 col-sm-12">
+                <div class="card" (click)="showDepartment(dept.id)">
+                    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBLxi3Wnr4Gys5z21qOADzNiMbI7j6jWUZJ9s9-LUq6kY7YJl2iQ&s" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dept.name }}</h5>
                     </div>
                 </div>
             </div>
         </div>
-    </ng-template>
+    </div>
+    
 </ng-template>

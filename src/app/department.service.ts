@@ -10,12 +10,20 @@ import { puts } from 'util';
 export class DepartmentService {
 
   url: string = 'http://localhost:8080/spring-rest-demo/api';
-  idCounter = 3;
+  idCounter = 6;
 
-  constructor(private http: HttpClient) { }
+  private _result: Department[];
+  result$: BehaviorSubject<Department[]>;
 
-  getDepartments(): Observable<Department[]> {
-    return this.http.get<Department[]>(this.url + `/departments`);
+  constructor(private http: HttpClient) {
+    this.result$ = new BehaviorSubject<Department[]>(this._result)
+  }
+
+  getDepartments(): void {
+    this.http.get<Department[]>(this.url + `/departments`).subscribe(res => { 
+      this._result = res;
+      this.result$.next(this._result);
+    });
   }
 
   getDepartmentsByIds(ids: string[]): Observable<Department[]> {
@@ -28,8 +36,9 @@ export class DepartmentService {
   }
 
   create(department: Department): Observable<Department> {
-    department.id = this.idCounter;
+    department.Id = this.idCounter;
     this.idCounter++;
+    console.log(department);
     return this.http
               .post<Department>(`${this.url}/departments`, department);
     

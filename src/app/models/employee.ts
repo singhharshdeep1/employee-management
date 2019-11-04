@@ -2,69 +2,71 @@ import * as moment from 'moment';
 import Department from './department';
 
 export default class Employee {
+
+    private employee_id: number;
+    private department: Department;
+
     constructor(
-        private Employee_Id: number,
-        private FirstName: string,
-        private LastName: string,
-        private Address: string,
-        private Role: string,
-        private BirthDate: Date,
-        private Department: Department
+        private firstName: string,
+        private lastName: string,
+        private address: string,
+        private birthDate: Date,
+        private role: string,
     ) {}
 
-    public get employee_id(): number {
-        return this.Employee_Id;
+    public get Employee_Id(): number {
+        return this.employee_id;
     }
 
-    public set employee_id(Id: number) {
-        this.Employee_Id = Id;
+    public set Employee_Id(Id: number) {
+        this.employee_id = Id;
     }
 
-    public get firstName(): string {
-        return this.FirstName;
+    public get FirstName(): string {
+        return this.firstName;
     }
 
-    public set firstName(FirstName: string) {
-        this.FirstName = FirstName;
+    public set FirstName(FirstName: string) {
+        this.firstName = FirstName;
     }
 
-    public get lastName(): string {
-        return this.LastName;
+    public get LastName(): string {
+        return this.lastName;
     }
 
-    public set lastName(LastName: string) {
-        this.LastName = LastName;
+    public set LastName(LastName: string) {
+        this.lastName = LastName;
     }
 
-    public get address(): string {
-        return this.Address;
+    public get Address(): string {
+        return this.address;
     }
 
-    public set address(Address: string) {
-        this.Address = Address;
+    public set Address(Address: string) {
+        this.address = Address;
     }
 
-    public get role(): string {
-        return this.Role;
+    public get Role(): string {
+        return this.role;
     }
 
-    public set role(Role: string) {
-        this.Role = Role;
+    public set Role(Role: string) {
+        this.role = Role;
     }
 
-    public get birtDate(): string {
-        return moment(this.BirthDate).format("DD/MM/YYYY");
+    public get BirtDate(): string {
+        return moment(this.birthDate).format("DD/MM/YYYY");
     }
 
-    public set birthDate(DateOfBirth: string) {
-        this.BirthDate = moment(DateOfBirth, "DD/MM/YYYY").toDate();;
+    public set BirthDate(DateOfBirth: string) {
+        this.birthDate = moment(DateOfBirth, "DD/MM/YYYY").toDate();;
     }
 
-    public get department(): Department {
-        return this.Department;
+    public get Department(): Department {
+        return this.department;
     }
 
-    public set department(Department: Department) {
-        this.Department = Department;
+    public set Department(Department: Department) {
+        this.department = Department;
     }
 }

@@ -31,7 +31,8 @@ export class EmployeeService {
   }
 
   create(employee: Employee): Observable<Employee> {
-    employee.employee_id = this.idCounter;
+    employee.Employee_Id = this.idCounter;
+    console.log(employee);
     this.idCounter++;
     return this.http
               .post<Employee>(this.url + `/employees`, employee);

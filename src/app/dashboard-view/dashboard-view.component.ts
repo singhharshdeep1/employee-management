@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, DoCheck } from '@angular/core';
 import { SidebarService } from '../sidebar.service';
 import { EmployeeService } from '../employee.service';
 import { DepartmentService } from '../department.service';
@@ -24,24 +24,29 @@ export class DashboardViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('Init');
     this.sidebarService.currentTab.subscribe(tab => { 
       this.selectedTab = tab;
       if (this.selectedTab === 'employees') {
-        this.empService.getEmployees().subscribe(updatedEmployees => { console.log(updatedEmployees); this.data = updatedEmployees });
+        this.empService.getEmployees().subscribe(updatedEmployees => { this.data = updatedEmployees });
+      } else if (this.selectedTab === 'departments') {
+        this.deptService.getDepartments();
+        this.deptService.result$.subscribe(res => { console.log(res); this.data = res});
       } else {
-        this.deptService.getDepartments().subscribe(updatedDepartments => this.data = updatedDepartments);
+        this.sidebarService.changeTab('employees');
+        this.empService.getEmployees().subscribe(updatedEmployees => { this.data = updatedEmployees });
       }
     });
   }
 
   showEmployee(id: string) {
-    this.router.navigate([`employee/${id}`]);
     this.sidebarService.changeTab('');
+    this.router.navigate([`employee/${id}`]);
   }
 
   showDepartment(id: string) {
-    this.router.navigate([`department/${id}`]);
     this.sidebarService.changeTab('');
+    this.router.navigate([`department/${Number(id)}`]);
   }
 
   searchList(query: string) {
@@ -57,7 +62,5 @@ export class DashboardViewComponent implements OnInit {
 
   getDepartmentsFor(query: string): any[] {
     return this.data.filter(department => department.name.includes(query));
-
   }
-
 }
